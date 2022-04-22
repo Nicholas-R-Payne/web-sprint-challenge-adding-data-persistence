@@ -1,22 +1,22 @@
 // build your `/api/tasks` router here
 const router = require('express').Router()
 const Task = require('./model')
-const Project = require('../project/model')
 
 router.get('/', (req, res, next) => {
-    Task.getTasks()
-    Project.getProjects()
+  Task.getTasks()
       .then(tasks => {
         let resp = tasks.map((task) => {
           return {
             task_description: task.task_description,
-            task_name: task.task_notes,
-            task_completed: Boolean(task.task_completed)
-          };
-        });
+            task_notes: task.task_notes,
+            task_completed: Boolean(task.task_completed),
+            project_name: task.project_name,
+            project_description: task.project_description,
+          }
+        })
         res.status(200).json(resp);
       })
-      .catch(next)
+    .catch(next)
 })
 
 router.use((err, req, res, next) => { // eslint-disable-line
