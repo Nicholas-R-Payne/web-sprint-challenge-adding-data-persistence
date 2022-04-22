@@ -17,6 +17,19 @@ router.get('/', (req, res, next) => {
       .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+  Project.createProject(req.body)
+    .then(project => {
+      let resp = {
+        project_name: project.project_name,
+        project_description: project.project_description,
+        project_completed: Boolean(project.project_completed)
+      }
+      res.status(200).json(resp)
+    })
+    .catch(next)
+})
+
 router.use((err, req, res, next) => { // eslint-disable-line
     res.status(500).json({
         message: err.message,
