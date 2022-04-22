@@ -9,9 +9,9 @@ router.get('/', (req, res, next) => {
           return {
             project_name: project.project_name,
             project_description: project.project_description,
-            project_completed: Boolean(project.project_completed),
-          };
-        });
+            project_completed: Boolean(project.project_completed)
+          }
+        })
         res.status(200).json(resp);
       })
       .catch(next)

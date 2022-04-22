@@ -9,9 +9,9 @@ router.get('/', (req, res, next) => {
           return {
             resource_name: resource.resource_name,
             resource_description: resource.resource_description
-          };
-        });
-        res.status(200).json(resp);
+          }
+        })
+        res.status(200).json(resp)
       })
       .catch(next)
 })
