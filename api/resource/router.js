@@ -16,4 +16,16 @@ router.get('/', (req, res, next) => {
       .catch(next)
 })
 
+router.post('/', (req, res, next) => {
+  Resource.createResource(req.body)
+    .then(resource => {
+      let resp = {
+        resource_name: resource.resource_name,
+        resource_description: resource.resource_description
+      }
+      res.status(200).json(resp)
+    })
+    .catch(next)
+})
+
 module.exports = router
